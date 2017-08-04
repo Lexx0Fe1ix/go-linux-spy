@@ -1,11 +1,18 @@
-# Keylogger and swap logger for Linux. 
-### Gathers data entered from the keyboard, takes screenshots and sends it by email.
+# Программа родительского контроля и мониторинга сотрудников. 
+### Функционал:
+1. Захват нажатых клавиш.
+2. Скриншоты.
+3. Отправка почты.
+4. Настройка через config.
+5.
+6.
+
 
 You must have installed go1.8
 
 # Usage
 
-`git clone https://github.com/Fomchenkov/go-linux-spy`
+`git clone https:/Lexx0Fe1ix/github.com//go-linux-spy`
 
 `cd go-linux-spy`
 
