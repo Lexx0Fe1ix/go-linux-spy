@@ -25,9 +25,13 @@ var fld_key string
 var fld_scr string
 var email_relay int
 var is_scr bool
-vat time_now_str string
-vat time_now_int int
+var time_now_str string
+var time_now_int int
 var time_zip string
+var date_now_key_fld string
+var time_now_key_name string
+var date_now_scr_fld string
+var time_now_scr_name string
 func main() {
 
 file, _ := os.Open("config") //имя файла, откуда читаем настройки
