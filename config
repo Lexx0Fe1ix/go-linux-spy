@@ -7,3 +7,5 @@ sbj:Subject_Mail
 body:Body_Mail
 fld_key:Folder_Keylog
 fld_scr:Folder_ScreenLog
+email_relay:14400
+is_scr:1
