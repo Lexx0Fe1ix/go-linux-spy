@@ -19,6 +19,8 @@ var email string
 var pass string
 var port_int int
 var port_int1 int
+var sbj string
+var body string
 
 func main() {
 
@@ -39,6 +41,8 @@ port := port_str[1]				// SMTP-порт - адский конверт в int
 port_int, _ := strconv.ParseInt(port, 10, 0)	// SMTP-порт - адский конверт в int
 port_int1 = int(port_int)			// SMTP-порт - адский конверт в int
 to := strings.Split(arr[4], ":")		// E-mail получателя
+sbj := strings.Split(arr[5], ":")		// Тема письма
+body := strings.Split(arr[5], ":")		// Тело письма
 defer file.Close()
 
 const (
