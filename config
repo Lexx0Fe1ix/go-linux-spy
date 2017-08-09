@@ -1,5 +1,5 @@
 email:@mail.ru
-pass:keylogger11
+pass:
 server:smtp.mail.ru
 port:465
 to:@mail.ru
