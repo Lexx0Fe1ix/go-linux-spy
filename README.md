@@ -1,6 +1,10 @@
 # Программа родительского контроля и мониторинга сотрудников. 
 
 ### WARNING! READ SURELY!
+### BEFORE IMPLEMENTATION OF PROGRAMS, EMPLOYEES SHOULD SIGN APPROVAL AGREEMENTS,
+### OTHERWISE MAY UNDERSTAND
+### CRIMINAL RESPONSIBILITY BEFORE LAW
+### -----------------------------------------------------------------------------
 ### ВНИМАНИЕ! К ПРОЧТЕНИЮ ОБЯЗАТЕЛЬНО!
 ### ПЕРЕД ВНЕДРЕНИЕМ ПРОГРАММ СОТРУДНИКИ ДОЛЖНЫ ПОДПИСАТЬ СООТВЕТСВУЮЩИЕ ДОГОВОРА,
 ### ИНАЧЕ МОЖЕТЕ ПОНЕСТИ
